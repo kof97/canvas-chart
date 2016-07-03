@@ -35,12 +35,26 @@ var chart = (function() {
 	};
 
 	var drawRect = function(fill, color) {
+
+		ctx.beginPath();
+
 		var len = fill.length;
 		for (var i = 0; i < len; i++) {
 
 
+            ctx.fillStyle = color;
+            var w = scaleX / 2,
+            	h = fill[i] * (data.axisY.length * scaleY) / 100,
+            	x = 1.5 * scaleX + scaleX * (i),
+            	y = canvas.height - scaleY - h;
+
+            ctx.fillRect(x, y, w, h);
+            ctx.fill();
+
 		};
-		
+
+		ctx.closePath();
+
 	}
 
 	var drawX = function(axisX) {
@@ -50,11 +64,14 @@ var chart = (function() {
 		ctx.lineTo(canvas.width - scaleX, canvas.height - scaleY);
 
 		var len = axisX.length;
+		var fontSize = 15;
 		for (var i = 0; i < len; i++) {
-			ctx.font = "normal normal bold 14px 微软雅黑";
+			ctx.font = "normal normal bold " + fontSize + "px 微软雅黑";
             ctx.fillStyle = "#285ea6";
 
-			ctx.fillText(axisX[i], scaleX * (i + 2), canvas.height - scaleY + 20, 24);
+            var x = scaleX * (i + 2) - scaleX / 4 - fontSize / 4,
+            	y = canvas.height - scaleY + 20;
+			ctx.fillText(axisX[i], x, y);
 
 
 
@@ -79,8 +96,8 @@ var chart = (function() {
 			ctx.font = "normal normal bold " + fontSize + "px 微软雅黑";
             ctx.fillStyle = "#285ea6";
 
-            var x = scaleX - fontSize * 2.5;
-            var y = canvas.height - scaleY * (i + 2) + fontSize / 3;
+            var x = scaleX - fontSize * 2.5,
+            	y = canvas.height - scaleY * (i + 2) + fontSize / 3;
 			ctx.fillText(axisY[i], x, y);
             
 		};
