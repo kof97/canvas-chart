@@ -35,7 +35,12 @@ var chart = (function() {
 	};
 
 	var drawRect = function(fill, color) {
+		var len = fill.length;
+		for (var i = 0; i < len; i++) {
 
+
+		};
+		
 	}
 
 	var drawX = function(axisX) {
