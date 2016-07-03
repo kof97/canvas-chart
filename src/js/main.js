@@ -6,14 +6,15 @@ var chart = (function() {
 			axisX: [1, 2, 3, 4, 5, 6, 7],
 			axisY: ['20%', '40%', '60%', '80%', '100%'],
 
-			fill: [35.5, 48, 11, 26, 99, 88, 67],
+			fill: [35.5, 48, 11, 26, 99, 100, 83],
 			fillColor: "#b5cb85"
 		},
 
 		canvas, 
 		ctx,
 		scaleX = 0,
-		scaleY = 0;
+		scaleY = 0,
+		strY = "百分比";
 
 	var init = function(data) {
 		canvas = document.getElementById('chart');
@@ -46,9 +47,9 @@ var chart = (function() {
             var w = scaleX / 2,
             	h = fill[i] * (data.axisY.length * scaleY) / 100,
             	x = 1.5 * scaleX + scaleX * (i),
-            	y = canvas.height - scaleY - h;
+            	y = canvas.height - scaleY - h - 1;
 
-            ctx.fillRect(x, y, w, h - 1);
+            ctx.fillRect(x, y, w, h);
             ctx.fill();
 
 		};
@@ -94,13 +95,14 @@ var chart = (function() {
 			ctx.font = "normal normal bold " + fontSize + "px 微软雅黑";
             ctx.fillStyle = "#285ea6";
 
-            var x = scaleX - fontSize * 2.5,
+            var x = scaleX - fontSize * 3.5,
             	y = canvas.height - scaleY * (i + 2) + fontSize / 3;
 			ctx.fillText(axisY[i], x, y);
             
 		};
 
 		ctx.stroke();
+		ctx.fillText(strY, scaleX - 50, scaleY - 20);
 		ctx.closePath();
 
 		drawArrow(scaleX, scaleY, true);
@@ -126,6 +128,7 @@ var chart = (function() {
         ctx.fillStyle = "#666";
         ctx.fill();
         ctx.closePath();
+
 	}
 
 	var drawBg = function(axisY) {
