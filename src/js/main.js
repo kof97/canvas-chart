@@ -46,7 +46,7 @@ var chart = (function() {
             ctx.fillStyle = color;
             var w = scaleX / 2,
             	h = fill[i] * (data.axisY.length * scaleY) / 100,
-            	x = 1.5 * scaleX + scaleX * (i),
+            	x = 1.5 * scaleX + scaleX * i,
             	y = canvas.height - scaleY - h - 1;
 
             ctx.fillRect(x, y, w, h);
