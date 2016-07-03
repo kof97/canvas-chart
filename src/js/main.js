@@ -48,7 +48,7 @@ var chart = (function() {
             	x = 1.5 * scaleX + scaleX * (i),
             	y = canvas.height - scaleY - h;
 
-            ctx.fillRect(x, y, w, h);
+            ctx.fillRect(x, y, w, h - 1);
             ctx.fill();
 
 		};
@@ -73,14 +73,12 @@ var chart = (function() {
             	y = canvas.height - scaleY + 20;
 			ctx.fillText(axisX[i], x, y);
 
-
-
 		};
 
 		ctx.stroke();
-
-
 		ctx.closePath();
+
+		drawArrow(canvas.width - scaleX, canvas.height - scaleY, false);
 
 	}
 
@@ -103,10 +101,31 @@ var chart = (function() {
 		};
 
 		ctx.stroke();
-
-
 		ctx.closePath();
 
+		drawArrow(scaleX, scaleY, true);
+
+	}
+
+	var drawArrow = function(left, top, flag) {
+		var arrowWidth = 5,
+			arrowHeight = 10;
+
+		ctx.beginPath();
+        ctx.moveTo(left, top);
+        if(flag){
+            ctx.lineTo(left + arrowWidth, top);
+            ctx.lineTo(left, top - arrowHeight);
+            ctx.lineTo(left - arrowWidth, top);
+        }else{
+            ctx.lineTo(left, top - arrowWidth);
+            ctx.lineTo(left + arrowHeight, top);
+            ctx.lineTo(left, top + arrowWidth);
+        }
+        
+        ctx.fillStyle = "#666";
+        ctx.fill();
+        ctx.closePath();
 	}
 
 	var drawBg = function(axisY) {
@@ -117,7 +136,7 @@ var chart = (function() {
 
 		for (var i = 0; i < len; i++) {
 			if (i % 2 == 0) {
-				ctx.fillRect(scaleX + 1, scaleY * (i + 2), canvas.width - 2 * scaleX, scaleY);
+				ctx.fillRect(scaleX + 1, scaleY * (i + 2) - 1, canvas.width - 2 * scaleX - 5, scaleY);
                 ctx.fill();
 			};
 		};
