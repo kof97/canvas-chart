@@ -188,7 +188,7 @@ var brokenLine = (function() {
         // drawRect(data.fill, data.fillColor);
 
     };
-
+/*
     var drawRect = function(fill, color) {
 
         ctx.beginPath();
@@ -211,7 +211,7 @@ var brokenLine = (function() {
         ctx.closePath();
 
     }
-
+*/
     var drawX = function(axisX) {
         ctx.beginPath();
 
