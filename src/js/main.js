@@ -191,8 +191,6 @@ var brokenLine = (function() {
 
 	var drawBrokenLine = function(fill, color) {
 
-		ctx.beginPath();
-
 		var len = fill.length,
 			oldX = 0,
 			oldY = 0;
@@ -205,7 +203,7 @@ var brokenLine = (function() {
 
 			ctx.beginPath();
 			ctx.fillStyle = "#000";
-			ctx.arc(x, y, 3, 0, 2*Math.PI);
+			ctx.arc(x, y, 3, 0, 2 * Math.PI);
 			ctx.fill();
 
 			if (oldX == 0 && oldY == 0) {
@@ -216,8 +214,6 @@ var brokenLine = (function() {
 			}
 
 			ctx.beginPath();
-			console.log(oldX);
-			console.log(x);
 			ctx.moveTo(oldX, oldY);
 			ctx.lineTo(x, y);
 			ctx.stroke();
