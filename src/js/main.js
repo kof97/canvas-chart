@@ -160,7 +160,7 @@ var brokenLine = (function() {
 			axisX: [1, 2, 3, 4, 5, 6, 7, 8],
 			axisY: ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%'],
 
-			fill: [35.5, 48, 11, 26, 99, 100, 83, 111],
+			fill: [35.5, 40, 11, 26, 99, 100, 83, 101],
 			fillColor: "#b5cb85"
 		},
 
@@ -185,33 +185,52 @@ var brokenLine = (function() {
 		drawY(data.axisY);
 		drawBg(data.axisY, data.axisX);
 
-		// drawRect(data.fill, data.fillColor);
+		drawBrokenLine(data.fill, data.fillColor);
 
 	};
-/*
-	var drawRect = function(fill, color) {
+
+	var drawBrokenLine = function(fill, color) {
 
 		ctx.beginPath();
 
-		var len = fill.length;
+		var len = fill.length,
+			oldX = 0,
+			oldY = 0;
+
 		for (var i = 0; i < len; i++) {
 
-
-			ctx.fillStyle = color;
-			var w = scaleX / 2,
-				h = fill[i] * (data.axisY.length * scaleY) / 100,
-				x = 1.5 * scaleX + scaleX * i,
+			var h = fill[i] * (data.axisY.length * scaleY) / 100,
+				x = 2 * scaleX + scaleX * i,
 				y = canvas.height - scaleY - h - 1;
 
-			ctx.fillRect(x, y, w, h);
+			ctx.beginPath();
+			ctx.fillStyle = "#000";
+			ctx.arc(x, y, 3, 0, 2*Math.PI);
 			ctx.fill();
+
+			if (oldX == 0 && oldY == 0) {
+				oldX = x;
+				oldY = y;
+
+				continue;
+			}
+
+			ctx.beginPath();
+			console.log(oldX);
+			console.log(x);
+			ctx.moveTo(oldX, oldY);
+			ctx.lineTo(x, y);
+			ctx.stroke();
+
+			oldX = x;
+			oldY = y;
 
 		};
 
 		ctx.closePath();
 
 	}
-*/
+
 	var drawX = function(axisX) {
 		ctx.beginPath();
 
