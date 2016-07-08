@@ -115,11 +115,11 @@ var chart = (function() {
 
 		ctx.beginPath();
 		ctx.moveTo(left, top);
-		if(flag){
+		if (flag) {
 			ctx.lineTo(left + arrowWidth, top);
 			ctx.lineTo(left, top - arrowHeight);
 			ctx.lineTo(left - arrowWidth, top);
-		}else{
+		} else {
 			ctx.lineTo(left, top - arrowWidth);
 			ctx.lineTo(left + arrowHeight, top);
 			ctx.lineTo(left, top + arrowWidth);
