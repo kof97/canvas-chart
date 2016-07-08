@@ -214,6 +214,7 @@ var brokenLine = (function() {
 			}
 
 			ctx.beginPath();
+			ctx.strokeStyle = "#1C4982";
 			ctx.moveTo(oldX, oldY);
 			ctx.lineTo(x, y);
 			ctx.stroke();
